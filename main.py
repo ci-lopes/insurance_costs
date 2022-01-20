@@ -86,7 +86,75 @@ print("Number of smokers: {smokers}".format(smokers = costumer_smoker_list(costu
 print("Number of non-smokers: {nonsmokers}".format(nonsmokers = costumer_smoker_list(costumers).count(0)))
 
 
+## computes the average insurance cost by age interval
+def average_insurance_cost_by_age(age_list, charges_list):
+    total_charges_18_25 = 0
+    list_charges_18_25 = []
+    total_charges_26_32 = 0
+    list_charges_26_32 = []
+    total_charges_33_39 = 0
+    list_charges_33_39 = []
+    total_charges_40_46 = 0
+    list_charges_40_46 = []
+    total_charges_47_53 = 0
+    list_charges_47_53 = []
+    total_charges_54_60 = 0
+    list_charges_54_60 = []
+    total_charges_61_67 = 0
+    list_charges_61_67 = []
 
+ 
+    for i in range(len(age_list)):
+        age = age_list[i]
+        charges = charges_list[i]
+
+        if age >= 18 and age <= 25:
+            total_charges_18_25 = total_charges_18_25 + charges
+            list_charges_18_25.append(charges)
+
+        elif age > 25 and age <= 32:
+            total_charges_26_32 = total_charges_26_32 + charges
+            list_charges_26_32.append(charges)
+        
+        elif age > 32 and age <= 39:
+            total_charges_33_39 = total_charges_33_39 + charges
+            list_charges_33_39.append(charges)
+        
+        elif age > 39 and age <= 46:
+            total_charges_40_46 = total_charges_40_46 + charges
+            list_charges_40_46.append(charges)
+
+        elif age > 46 and age <= 53:
+            total_charges_47_53 = total_charges_47_53 + charges
+            list_charges_47_53.append(charges)
+
+        elif age > 53 and age <= 60:
+            total_charges_54_60 = total_charges_54_60 + charges
+            list_charges_54_60.append(charges)
+        
+        elif age > 60 and age <= 67:
+            total_charges_61_67 = total_charges_61_67 + charges
+            list_charges_61_67.append(charges)     
+
+    average_charges_18_25 = round(total_charges_18_25/len(list_charges_18_25),1)
+    average_charges_26_32 = round(total_charges_26_32/len(list_charges_26_32),1)
+    average_charges_33_39 = round(total_charges_33_39/len(list_charges_33_39),1)
+    average_charges_40_46 = round(total_charges_40_46/len(list_charges_40_46),1)
+    average_charges_47_53 = round(total_charges_47_53/len(list_charges_47_53),1)
+    average_charges_54_60 = round(total_charges_54_60/len(list_charges_54_60),1)
+    average_charges_61_67 = round(total_charges_61_67/len(list_charges_61_67),1)
+
+    
+    return average_charges_18_25, average_charges_26_32, average_charges_33_39, average_charges_40_46, average_charges_47_53, average_charges_54_60, average_charges_61_67
+
+average_charges_by_age = average_insurance_cost_by_age(costumer_age_list(costumers), costumer_charges_list(costumers))
+
+print("AVERAGE INSURANCE COST BY AGE INTERVAL:\n[18-25]: {a_18_25}$\n[26-32]: {a_26_32}$\n[33-39]: {a_33_39}$\n[40-46]: {a_40_46}$\n[47-53]: {a_47_53}$\n[54-60]: {a_54_60}$\n[61-67]: {a_61_67}$".format(
+    a_18_25 = average_charges_by_age[0], a_26_32 = average_charges_by_age[1], a_33_39 = average_charges_by_age[2],
+    a_40_46 = average_charges_by_age[3], a_47_53 = average_charges_by_age[4], a_54_60 = average_charges_by_age[5],
+    a_61_67 = average_charges_by_age[6]
+))
+            
 
 
 
