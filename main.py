@@ -154,7 +154,143 @@ print("AVERAGE INSURANCE COST BY AGE INTERVAL:\n[18-25]: {a_18_25}$\n[26-32]: {a
     a_40_46 = average_charges_by_age[3], a_47_53 = average_charges_by_age[4], a_54_60 = average_charges_by_age[5],
     a_61_67 = average_charges_by_age[6]
 ))
-            
+
+## computes the average insurance cost by sex
+
+def average_insurance_cost_by_sex(sex_list, charges_list):
+    total_charges_female = 0
+    list_charges_female = []
+    total_charges_male = 0
+    list_charges_male = []
+    for i in range(len(sex_list)):
+        sex = sex_list[i]
+        charges = charges_list[i]
+        if sex == 1:
+            total_charges_female = total_charges_female + charges
+            list_charges_female.append(charges)
+        elif sex == 0:
+            total_charges_male = total_charges_male + charges
+            list_charges_male.append(charges)
+
+    return round(total_charges_female/len(list_charges_female), 1), round(total_charges_male/len(list_charges_male), 1)
+
+
+average_charges_by_sex = average_insurance_cost_by_sex(costumer_sex_list(costumers), costumer_charges_list(costumers))
+print("AVERAGE INSURANCE COST BY SEX:\nFemale: {charges_female}$ | Male: {charges_male}$".format(
+    charges_female = average_charges_by_sex[0], charges_male = average_charges_by_sex[1]))
+
+## computes the average insurance cost by bmi interval
+### Underweight = <18.5
+### Normal weight = 18.5–24.9
+### Overweight = 25–29.9
+### Obesity = BMI of 30 or greater
+
+def average_insurance_cost_by_bmi(bmi_list, charges_list):
+    total_bmi_charges_underweight = 0
+    list_bmi_charges_underweight = []
+    total_bmi_charges_normal = 0
+    list_bmi_charges_normal = []
+    total_bmi_charges_overweight = 0
+    list_bmi_charges_overweight = []
+    total_bmi_charges_obesity = 0
+    list_bmi_charges_obesity = []
+    for i in range(len(bmi_list)):
+        bmi = bmi_list[i]
+        charges = charges_list[i]
+        if bmi <= 18.5:
+            total_bmi_charges_underweight = total_bmi_charges_underweight + charges
+            list_bmi_charges_underweight.append(charges)
+        elif bmi > 18.5 and bmi <= 24.9:
+            total_bmi_charges_normal = total_bmi_charges_normal + charges
+            list_bmi_charges_normal.append(charges)
+        elif bmi >= 25 and bmi <= 29.9:
+            total_bmi_charges_overweight = total_bmi_charges_overweight + charges
+            list_bmi_charges_overweight.append(charges)
+        elif bmi >= 30:
+            total_bmi_charges_obesity = total_bmi_charges_obesity + charges
+            list_bmi_charges_obesity.append(charges)
+
+    return round(total_bmi_charges_underweight/len(list_bmi_charges_underweight), 1), round(total_bmi_charges_normal/len(list_bmi_charges_normal), 1), round(total_bmi_charges_overweight/len(list_bmi_charges_overweight), 1), round(total_bmi_charges_obesity/len(list_bmi_charges_obesity), 1)
+
+
+average_charges_by_bmi = average_insurance_cost_by_bmi(costumer_bmi_list(costumers), costumer_charges_list(costumers))
+
+print("AVERAGE INSURANCE COST BY BMI INTERVAL:\n[Underweight]: {under}$\n[Normal Weight]: {normal}$\n[Overweight]: {over}$\n[Obesity]: {obesity}$\n".format(
+    under = average_charges_by_bmi[0], normal = average_charges_by_bmi[1], over = average_charges_by_bmi[2],
+    obesity = average_charges_by_bmi[3]
+))
+
+## computes the average insurance cost by number of children
+
+def average_insurance_cost_by_nchildren(children_list, charges_list):
+    total_nchildren_0 = 0
+    list_nchildren_0 = []
+    total_nchildren_1 = 0
+    list_nchildren_1 = []
+    total_nchildren_2 = 0
+    list_nchildren_2 = []
+    total_nchildren_3 = 0
+    list_nchildren_3 = []
+    total_nchildren_4 = 0
+    list_nchildren_4 = []
+    total_nchildren_5 = 0
+    list_nchildren_5 = []
+    for i in range(len(children_list)):
+        nchildren = children_list[i]
+        charges = charges_list[i]
+        if nchildren == 0:
+            total_nchildren_0 = total_nchildren_0 + charges
+            list_nchildren_0.append(charges)
+        elif nchildren == 1:
+            total_nchildren_1 = total_nchildren_1 + charges
+            list_nchildren_1.append(charges)
+        elif nchildren == 2:
+            total_nchildren_2 = total_nchildren_2 + charges
+            list_nchildren_2.append(charges)
+        elif nchildren == 3:
+            total_nchildren_3 = total_nchildren_3+ charges
+            list_nchildren_3.append(charges)
+        elif nchildren == 4:
+            total_nchildren_4 = total_nchildren_4 + charges
+            list_nchildren_4.append(charges)
+        elif nchildren == 5:
+            total_nchildren_5 = total_nchildren_5 + charges
+            list_nchildren_5.append(charges)
+
+    return round(total_nchildren_0/len(list_nchildren_0), 1), round(total_nchildren_1/len(list_nchildren_1), 1), round(total_nchildren_2/len(list_nchildren_2), 1), round(total_nchildren_3/len(list_nchildren_3), 1), round(total_nchildren_4/len(list_nchildren_4), 1), round(total_nchildren_5/len(list_nchildren_5), 1)
+
+
+average_charges_by_nchildren = average_insurance_cost_by_nchildren(costumer_children_list(costumers), costumer_charges_list(costumers))
+
+print("AVERAGE INSURANCE COST BY NUMBER OF CHILDREN:\n[no children]: {n0}$\n[1 child]: {n1}$\n[2 children]: {n2}$\n[3 children]: {n3}$\n[4 children]: {n4}$\n[5 children]: {n5}$".format(
+    n0 = average_charges_by_nchildren[0], n1 = average_charges_by_nchildren[1], n2 = average_charges_by_nchildren[2],
+    n3 = average_charges_by_nchildren[3], n4 = average_charges_by_nchildren[4], n5 = average_charges_by_nchildren[5]
+))
+
+## computes the average insurance cost by smoking habits
+
+def average_insurance_cost_by_smoker(smoker_list, charges_list):
+    total_charges_smoker = 0
+    list_charges_smoker = []
+    total_charges_nonsmoker = 0
+    list_charges_nonsmoker = []
+    for i in range(len(smoker_list)):
+        smoker = smoker_list[i]
+        charges = charges_list[i]
+        if smoker == 1:
+            total_charges_smoker = total_charges_smoker + charges
+            list_charges_smoker.append(charges)
+        elif smoker == 0:
+            total_charges_nonsmoker = total_charges_nonsmoker + charges
+            list_charges_nonsmoker.append(charges)
+
+    return round(total_charges_smoker/len(list_charges_smoker), 1), round(total_charges_nonsmoker/len(list_charges_nonsmoker), 1)
+
+
+average_charges_by_smoker = average_insurance_cost_by_smoker(costumer_smoker_list(costumers), costumer_charges_list(costumers))
+print("AVERAGE INSURANCE COST BY SMOKING HABITS:\nSmoker: {charges_smoker}$ | Non Smoker: {charges_nonsmoker}$".format(
+    charges_smoker = average_charges_by_smoker[0], charges_nonsmoker = average_charges_by_smoker[1]))
+
 
 
 
