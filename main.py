@@ -1,7 +1,6 @@
 from costumer import Costumer
 from read_data import Reader
-
-## csv columns: age,sex,bmi,children,smoker,region,charges
+import csv
 
 # ## test Costumer methods     
 # costumer1 = Costumer(0, 30, 1 , 23.2, 0, 0, 1300)
@@ -293,17 +292,16 @@ print("AVERAGE INSURANCE COST BY SMOKING HABITS:\nSmoker: {charges_smoker}$ | No
 
 
 
+## write new csv with updated data along with the estimated insurance cost and diff between charged and estimated costs by costumer
+with open("insurance_data_final.csv", "w") as output_csv:
+    fieldnames = "id,age,sex,bmi,children,smoker,charges,estimated_insurance_cost,difference\n"
+    output_csv.write(fieldnames)
+    for costumer in costumers:
+        output_csv.write(costumer.export_data())
 
-# ## write new csv with updated data along with the estimated insurance cost and diff between charged and estimated costs by costumer
-# with open("insurance_data_final.csv", "w") as output_csv:
-#     fieldnames = "id,age,sex,bmi,children,smoker,charges,estimated_insurance_cost,difference\n"
-#     output_csv.write(fieldnames)
-#     for costumer in costumer_data:
-#         output_csv.write(costumer.export_data())
-
-# ## read output csv
-# with open("output.csv") as output_csv:
-#     print(output_csv.read())
-#     reader = csv.DictReader(output_csv)
-#     for row in reader:
-#         print(row)
+## read output csv
+with open("output.csv") as output_csv:
+    #print(output_csv.read())
+    reader = csv.DictReader(output_csv)
+    #for row in reader:
+        #print(row)
